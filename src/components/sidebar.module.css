@@ -10,6 +10,7 @@
     object-fit: cover;
 }
 
+
 .profile{
     display: flex;
     flex-direction: column;
@@ -29,15 +30,6 @@
     color: var(--gray-400);
 }
 
-.avatar{
-    box-sizing: initial;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 8px;
-
-    border: 4px solid var(--gray-800);
-    outline: 2px solid var(--green-500);
-}
 
 .sidebar footer{
     border-top: 1px solid var(--gray-600);
