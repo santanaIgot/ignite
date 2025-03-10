@@ -3,6 +3,8 @@ import styles from './comment.module.css'
 import { Avatar } from './avatar'
 
 export function Comment() {
+
+
     return(
         <div className={styles.comment}>
             <Avatar hasBorder={false} src="https://github.com/santanaIgot.png"/>
