@@ -50,16 +50,32 @@ export function Post({author, publishedAt, content}) {
 
     function handleNewCommentChange(params) {
         console.log('teste');
+        event.target.setCustomValidity('')
         setNewCommentText(event.target.value)
         
     }
 
+    function handleNewComentInvalid(params) {
+        event.target.setCustomValidity('Este campo é obrigatório')   
+    }
+
     function deleteComment(comment) {
         console.log(`deletar comentário ${comment}`);
+        //imutabilidade - as variáveis não sofrem mutação.Nunca alteramos uma variável na memória
+        //nos criamos um novo valor(espaço)
+        //isso quer dizer que quando chamamos a função setComments , nos não estamos atualizando o valor dela 
+        // nos estamos criando um novo espaço na memória
+        //imutabilidade nos permite ser mais performático criando um novo vaor para var comment 
+        
+        const commentsWhithoutDeleteOne = comments.filter(commentToDelete => {
+            return comment != commentToDelete;
+        })
+        setComments(commentsWhithoutDeleteOne)
         
     }
 
 
+    const isNewCommentInputEmpty = newCommentText.length === 0;
     
     return(
         <article className={styles.post}>
@@ -97,11 +113,13 @@ export function Post({author, publishedAt, content}) {
                     //este value vai limpar todo o campo após fazer uma publicação
                     //value define o valor da textArea. Que é o valor inicial que começa teoricamente em branco 
                     onChange={handleNewCommentChange}
+                    onInvalid={handleNewComentInvalid}
+                    required 
                 />
 
                 
                 <footer>
-                    <button type="submit">Publicar</button>
+                    <button type="submit" disabled={isNewCommentInputEmpty}>Publicar</button>
                 </footer>
             </form>
 
